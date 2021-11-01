@@ -6,6 +6,7 @@ export function Login(){
      const [text, setText] = useState('');
      const [pass, setpass] = useState("");
      const [obj,setObj]= useState({});
+     const [login, setLogin] = useState(null);
     
      function updatetext(e){
         e.preventDefault();
@@ -21,11 +22,14 @@ export function Login(){
         if(localStorage.hasOwnProperty('testObject')){
             const localdata=JSON.parse(localStorage.getItem("testObject"));
             setObj(localdata.basic_info);
+            setLogin(true);
         }
 
-     },[])
+     },[login])
+
      function deletestorage(){
         localStorage.removeItem('testObject');
+        setLogin(false);
         setObj({});
      }
 
@@ -49,7 +53,8 @@ export function Login(){
        if(response.status===200 ){
             setObj(responsedata.basic_info);
             localStorage.setItem('testObject', JSON.stringify(responsedata));
-             
+            setLogin(true);
+    
        }
        else{
       
@@ -61,7 +66,7 @@ export function Login(){
 
     return(
         <div>
-            {localStorage.hasOwnProperty('testObject') && obj!=null ? <div> {obj.first_name} {obj.middle_name} {" "}{obj.mobile_no} <div>
+            {obj!=null && login===true ? <div> {obj.first_name} {obj.middle_name} {" "}{obj.mobile_no} <div>
             <input type="submit" id="usersubmit" value="LogOut" onClick={deletestorage}/>
                 </div> </div>
              : <form className="loginsection">
