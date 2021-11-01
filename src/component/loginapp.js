@@ -1,11 +1,10 @@
 import React from 'react';
 import './loginapp.css'
-import { useState} from 'react';
+import { useState , useEffect} from 'react';
 
 export function Login(){
      const [text, setText] = useState('');
      const [pass, setpass] = useState("");
-     const [login,setlogin]= useState(null);
      const [obj,setObj]= useState({});
     
      function updatetext(e){
@@ -16,6 +15,18 @@ export function Login(){
      function updatepass(e){
         e.preventDefault();
          setpass(e.target.value);
+     }
+
+     useEffect(()=>{
+        if(localStorage.hasOwnProperty('testObject')){
+            const localdata=JSON.parse(localStorage.getItem("testObject"));
+            setObj(localdata.basic_info);
+        }
+
+     },[])
+     function deletestorage(){
+        localStorage.removeItem('testObject');
+        setObj({});
      }
 
     async function post_request(e){
@@ -36,20 +47,24 @@ export function Login(){
        const responsedata= await response.json();
           
        if(response.status===200 ){
-             setlogin(true);
-             localStorage.setItem('testObject', JSON.stringify(responsedata));
-             setObj(responsedata.basic_info);
+            setObj(responsedata.basic_info);
+            localStorage.setItem('testObject', JSON.stringify(responsedata));
              
-       }else{
+       }
+       else{
+      
            window.alert('not valid');
        }
      
-
+   
      }
 
     return(
         <div>
-            {login? <div> {obj.first_name} {obj.middle_name} {" "}{obj.mobile_no}  </div> : <form className="loginsection">
+            {localStorage.hasOwnProperty('testObject') && obj!=null ? <div> {obj.first_name} {obj.middle_name} {" "}{obj.mobile_no} <div>
+            <input type="submit" id="usersubmit" value="LogOut" onClick={deletestorage}/>
+                </div> </div>
+             : <form className="loginsection">
         <h1>Username</h1>
        <input type="text" className="userinput" value={text} onChange={updatetext}  />
         <h1>Password</h1>
