@@ -5,10 +5,35 @@
 }
 
 .loginsection{
-    border: 0.2rem none palevioletred;
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 
 .userinput{
-    margin:1.5rem 0 ;
+    margin:1.2rem 0 ;
 }
+
+#userlogout{
+    margin-top: 1.4rem;
+}
+.usertext{
+    font-size: 2.1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+input[type=submit] {
+    background-color: #0693cd;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size:16px;
+    font-weight: bold;
+    line-height: 1.4;
+    padding: 10px;
+    width: 180px
+  }
+
+  
+  input[type=text]:focus{
+    border-color:paleturquoise;
+    box-shadow:0 0 8px 0 rgb(92, 173, 255);
+  }

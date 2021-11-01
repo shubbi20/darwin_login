@@ -58,7 +58,7 @@ export function Login(){
        }
        else{
       
-           window.alert('not valid');
+           window.alert('User not registered');
        }
      
    
@@ -66,9 +66,9 @@ export function Login(){
 
     return(
         <div>
-            {obj!=null && login===true ? <div> {obj.first_name} {obj.middle_name} {" "}{obj.mobile_no} <div>
-            <input type="submit" id="usersubmit" value="LogOut" onClick={deletestorage}/>
-                </div> </div>
+            {obj!=null && login===true ? (<div className='usertext'> {obj.first_name} {obj.middle_name} {" ,"}{obj.mobile_no} <div>
+            <input type="submit" id="userlogout" value="LogOut" onClick={deletestorage}/>
+                </div> </div>)
              : <form className="loginsection">
         <h1>Username</h1>
        <input type="text" className="userinput" value={text} onChange={updatetext}  />
