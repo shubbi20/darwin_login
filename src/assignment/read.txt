@@ -1,0 +1,19 @@
+Step1) design login page with username and password  
+
+Step2)  call Api and validate token for all application  
+
+Step 3)  store login details in local storage 
+
+ 
+
+ 
+
+Request URL:  
+
+https://myphysio.digitaldarwin.in/api/login/ 
+
+Request Method: POST 
+
+Request Body : json  
+
+{"uid":"atukun10091","password":"Atul@123","blocked":0} 
